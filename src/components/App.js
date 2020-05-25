@@ -7,14 +7,12 @@ function getUniqueId(){
   var counter = document.getElementsByTagName("tr").length - 1;
   return counter;
 }
-const task = [
-]
 class App extends React.Component {
   constructor(props){
     super(props);
     this.state = {
       item: '',
-      todos: task
+      todos: []
     };
     this.updateItem=this.updateItem.bind(this);
     this.addTodo=this.addTodo.bind(this);
@@ -26,14 +24,11 @@ class App extends React.Component {
     });
   }
 
-  addTodo(e){
-    e.preventDefault();
-
+  addTodo(){
     const newTask = {
       id: getUniqueId(),
       comment: this.state.item
     };
-
     const newTodo = this.state.todos.slice();
     newTodo.push(newTask);
     this.setState({

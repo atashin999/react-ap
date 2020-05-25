@@ -11,10 +11,10 @@ class TodoItem extends React.Component {
               {this.props.todo.comment}
             </td>
             <td>
-              <input type="submit" value="作業中" name="状態変更ボタン"/>
+              <button type="submit" name="状態変更ボタン">作業中</button>
             </td>
             <td>
-              <input type="submit" value="削除" name="削除ボタン"/>
+              <button type="submit" name="削除ボタン">削除</button>
             </td>
           </tr>
         );
