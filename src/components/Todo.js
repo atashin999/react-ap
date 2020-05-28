@@ -6,9 +6,10 @@ class Todo extends React.Component {
         const task = this.props.todos.map((todo,index) => {
             return(
               <TodoItem
-                id={todo.id}
+                id={index}
                 todo={todo}
                 key={index}
+                deleteTodo={this.props.deleteTodo}
               />
             );
         });
