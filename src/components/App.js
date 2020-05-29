@@ -2,11 +2,6 @@ import React from 'react';
 import Form from './Form';
 import Todo from './Todo';
 
-function getUniqueId(){
-  // tr要素数取得
-  var counter = document.getElementsByTagName("tr").length - 1;
-  return counter;
-}
 class App extends React.Component {
   constructor(props){
     super(props);
@@ -16,6 +11,7 @@ class App extends React.Component {
     };
     this.updateItem=this.updateItem.bind(this);
     this.addTodo=this.addTodo.bind(this);
+    this.deleteTodo=this.deleteTodo.bind(this);
   }
 
   updateItem(e){
@@ -26,7 +22,6 @@ class App extends React.Component {
 
   addTodo(){
     const newTask = {
-      id: getUniqueId(),
       comment: this.state.item
     };
     const newTodo = this.state.todos.slice();
@@ -36,6 +31,16 @@ class App extends React.Component {
       item: ''
     });
   }
+ 
+  deleteTodo(todo){
+    const newTodo = this.state.todos.slice();
+    const pos = this.state.todos.indexOf(todo);
+
+    newTodo.splice(pos,1);
+    this.setState({
+      todos: newTodo
+    });
+  }
   
     render(){
         return(
@@ -43,6 +48,7 @@ class App extends React.Component {
             <h1>ToDoリスト</h1>
             <Todo
               todos={this.state.todos}
+              deleteTodo={this.deleteTodo}
             />
             <Form 
               item={this.state.item}

@@ -5,7 +5,7 @@ class TodoItem extends React.Component {
         return(
           <tr key={this.props.todo.id}>
             <td>
-              {this.props.todo.id} 
+              {this.props.id} 
             </td>
             <td>
               {this.props.todo.comment}
@@ -14,7 +14,7 @@ class TodoItem extends React.Component {
               <button type="submit" name="状態変更ボタン">作業中</button>
             </td>
             <td>
-              <button type="submit" name="削除ボタン">削除</button>
+              <button type="submit" name="削除ボタン" onClick={() => this.props.deleteTodo(this.props.todo)}>削除</button>
             </td>
           </tr>
         );
