@@ -10,6 +10,7 @@ class Todo extends React.Component {
                 todo={todo}
                 key={index}
                 deleteTodo={this.props.deleteTodo}
+                switchStatus={this.props.switchStatus}
               />
             );
         });
