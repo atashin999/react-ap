@@ -10,12 +10,14 @@ class App extends React.Component {
     super(props);
     this.state = {
       item: '',
-      todos: []
+      todos: [],
+      selectedOption: 'option1'
     };
     this.updateItem=this.updateItem.bind(this);
     this.addTodo=this.addTodo.bind(this);
     this.deleteTodo=this.deleteTodo.bind(this);
     this.switchStatus=this.switchStatus.bind(this);
+    this.handleOptionChange=this.handleOptionChange.bind(this);
   }
 
   updateItem(e){
@@ -37,7 +39,7 @@ class App extends React.Component {
       item: ''
     });
   }
-
+  
   deleteTodo(todo){
     const newTodo = this.state.todos.slice();
     const pos = this.state.todos.indexOf(todo);
@@ -59,7 +61,13 @@ class App extends React.Component {
       todos: task
     });
   }
-  
+
+  handleOptionChange(e){
+    this.setState({
+      selectedOption: e.target.value
+    });
+  }
+
     render(){
         return(
           <div>
@@ -68,6 +76,8 @@ class App extends React.Component {
               todos={this.state.todos}
               deleteTodo={this.deleteTodo}
               switchStatus={this.switchStatus}
+              handleOptionChange={this.handleOptionChange}
+              selectedOption={this.state.selectedOption}
             />
             <Form 
               item={this.state.item}
