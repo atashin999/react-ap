@@ -2,20 +2,22 @@ import React from 'react';
 import Form from './Form';
 import Todo from './Todo';
 
-function getUniqueId() {
-  return new Date().getTime().toString(36) + '-' + Math.random().toString(36);
-}
+// function getUniqueId() {
+//   return new Date().getTime().toString(36) + '-' + Math.random().toString(36);
+// }
 class App extends React.Component {
   constructor(props){
     super(props);
     this.state = {
       item: '',
-      todos: []
+      todos: [],
+      selectedOption: 'option1'
     };
     this.updateItem=this.updateItem.bind(this);
     this.addTodo=this.addTodo.bind(this);
     this.deleteTodo=this.deleteTodo.bind(this);
     this.switchStatus=this.switchStatus.bind(this);
+    this.handleOptionChange=this.handleOptionChange.bind(this);
   }
 
   updateItem(e){
@@ -26,7 +28,7 @@ class App extends React.Component {
 
   addTodo(){
     const newTask = {
-      id: getUniqueId(),
+      // id: getUniqueId(),
       comment: this.state.item,
       status: false
     };
@@ -37,7 +39,7 @@ class App extends React.Component {
       item: ''
     });
   }
-
+  
   deleteTodo(todo){
     const newTodo = this.state.todos.slice();
     const pos = this.state.todos.indexOf(todo);
@@ -59,7 +61,13 @@ class App extends React.Component {
       todos: task
     });
   }
-  
+
+  handleOptionChange(e){
+    this.setState({
+      selectedOption: e.target.value
+    });
+  }
+
     render(){
         return(
           <div>
@@ -68,6 +76,8 @@ class App extends React.Component {
               todos={this.state.todos}
               deleteTodo={this.deleteTodo}
               switchStatus={this.switchStatus}
+              handleOptionChange={this.handleOptionChange}
+              selectedOption={this.state.selectedOption}
             />
             <Form 
               item={this.state.item}

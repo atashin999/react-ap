@@ -3,7 +3,11 @@ import React from 'react';
 class TodoItem extends React.Component {
     render(){
         return(
-          <tr key={this.props.todo.id}>
+          <tr 
+            key={this.props.todo.id}
+            className={(this.props.selectedOption === 'option2' && this.props.todo.status)
+             || (this.props.selectedOption === 'option3' && !this.props.todo.status) ? "hide-todo" : ""}
+          >
             <td>
               {this.props.id}
             </td>

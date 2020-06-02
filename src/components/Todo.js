@@ -1,5 +1,6 @@
 import React from 'react';
 import TodoItem from './TodoItem';
+import Radio from './Radio';
 
 class Todo extends React.Component {
     render(){
@@ -11,14 +12,17 @@ class Todo extends React.Component {
                 key={index}
                 deleteTodo={this.props.deleteTodo}
                 switchStatus={this.props.switchStatus}
+                selectedOption={this.props.selectedOption}
               />
             );
         });
+        
         return(
           <div>
-            <input type="radio" name="すべて"/>すべて
-            <input type="radio" name="作業中"/>作業中
-            <input type="radio" name="完了"/>完了
+            <Radio
+              selectedOption={this.props.selectedOption}
+              handleOptionChange={this.props.handleOptionChange}
+            />
             <table>
               <thead>
                 <tr>
